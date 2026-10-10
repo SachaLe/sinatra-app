@@ -1,0 +1,23 @@
+<section class="card admin">
+  <h1>Espace mariés</h1>
+
+  <% if !drive.oauth_configured? %>
+    <p class="status bad">GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET ne sont pas définis.</p>
+    <p>Suivez l’étape 1 du README pour créer les identifiants Google.</p>
+  <% elsif !drive.configured? %>
+    <p class="status warn">Google Drive n’est pas encore connecté.</p>
+    <p>URL de redirection à déclarer dans Google Cloud :</p>
+    <p class="link"><%= h redirect_uri %></p>
+    <a class="button" href="<%= url('/admin/connect') %>">Connecter mon Google Drive</a>
+  <% elsif @drive_error %>
+    <p class="status bad">Erreur Google Drive : <%= h @drive_error %></p>
+    <a class="button" href="<%= url('/admin/connect') %>">Reconnecter Google Drive</a>
+  <% else %>
+    <p class="status ok">Google Drive connecté ✔</p>
+    <a class="button" href="<%= h @folder_url %>" target="_blank" rel="noopener">Ouvrir le dossier des photos</a>
+  <% end %>
+
+  <h2>Lien à partager</h2>
+  <p class="link"><%= h guest_link %></p>
+  <a class="button secondary" href="<%= url('/qr') %>">QR code à imprimer</a>
+</section>

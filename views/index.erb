@@ -1,0 +1,33 @@
+<header class="hero">
+  <p class="eyebrow">Partagez vos souvenirs</p>
+  <h1><%= h settings.wedding_title %></h1>
+  <p class="lead">Merci d’être là ! Envoyez-nous les photos et vidéos que vous avez prises, elles arrivent directement dans notre album.</p>
+</header>
+
+<% if @code_ok %>
+<section class="card" id="uploader" data-code="<%= h @code %>">
+  <label class="field">
+    <span>Votre prénom <small>(facultatif)</small></span>
+    <input type="text" id="guest" maxlength="60" autocomplete="given-name" placeholder="ex. Camille">
+  </label>
+
+  <label class="picker" for="files">
+    <input type="file" id="files" accept="image/*,video/*" multiple>
+    <span class="picker-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="4"/></svg>
+    </span>
+    <span class="picker-title">Choisir des photos / vidéos</span>
+    <span class="picker-hint">Vous pouvez en sélectionner plusieurs d’un coup</span>
+  </label>
+
+  <div id="summary" class="summary" hidden></div>
+  <ul id="list" class="file-list"></ul>
+  <button id="retry" class="button secondary" type="button" hidden>Réessayer les envois échoués</button>
+</section>
+<p class="footnote">Gardez cette page ouverte pendant l’envoi.</p>
+<script src="<%= url('/js/upload.js') %>"></script>
+<% else %>
+<section class="card">
+  <p>Ce lien semble incomplet. Scannez à nouveau le QR code ou demandez le lien aux mariés.</p>
+</section>
+<% end %>

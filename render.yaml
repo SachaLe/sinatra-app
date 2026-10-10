@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: photos-mariage
+    runtime: ruby
+    plan: free
+    buildCommand: bundle install
+    startCommand: bundle exec puma -p $PORT config.ru
+    healthCheckPath: /health
+    envVars:
+      - key: WEDDING_TITLE
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ACCESS_CODE
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REFRESH_TOKEN
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true

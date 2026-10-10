@@ -1,104 +1,139 @@
-body {
+:root {
+  --bg: #f7f1ea;
+  --card: #fffdf9;
+  --ink: #2d2a26;
+  --muted: #7a7068;
+  --accent: #b0806a;
+  --accent-ink: #ffffff;
+  --line: #e8ddd2;
+  --ok: #4f7a5a;
+  --warn: #a8742c;
+  --bad: #a64b44;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
 }
 
-.cb{
-  clear: both;
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 16px calc(32px + env(safe-area-inset-bottom));
 }
 
-.article{
-      margin: 2;
-      padding: 0;
-      width: 33%;
-      height: 200;
-      float: left;
+h1, h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 12px;
 }
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.6rem; margin-top: 28px; }
 
-header.header {
-  height: 62px;
+.hero { text-align: center; margin-bottom: 24px; }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin: 0 0 8px;
 }
-.nav {
-  height: 100%;
-  text-align: center;
-}
-.ul {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-.li {
-  display: inline-block;
-}
-.a {
-      padding: 20px;
-      display: inline-block;
-      color: white;
-      text-align: center;
-      margin-left: auto;
-      text-decoration: none;
-      font-family: monospace;
-      border-bottom: 1px solid;
-      text-align: center;
-      text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-}
-.h1 {
-  font-size:100px;
+.lead { color: var(--muted); margin: 0; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
   padding: 20px;
-  color: white;
-  margin-left: auto;
+  box-shadow: 0 10px 30px rgba(80, 60, 40, 0.06);
+}
+
+.field { display: block; margin-bottom: 16px; }
+.field span { display: block; font-weight: 500; margin-bottom: 6px; }
+.field small { color: var(--muted); font-weight: 400; }
+.field input {
+  width: 100%;
+  font: inherit;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.field input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+
+.picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 28px 16px;
+  border: 2px dashed var(--accent);
+  border-radius: 16px;
+  background: #fbf5ef;
+  color: var(--accent);
   text-align: center;
-  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+  cursor: pointer;
 }
-.h2{
+.picker input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.picker-title { font-weight: 600; font-size: 1.1rem; color: var(--ink); }
+.picker-hint { font-size: 0.85rem; color: var(--muted); }
+
+.summary { margin: 16px 0 8px; font-weight: 500; }
+.summary.ok { color: var(--ok); }
+.summary.warn { color: var(--warn); }
+
+.file-list { list-style: none; margin: 0; padding: 0; }
+.file { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.file:last-child { border-bottom: 0; }
+.file-row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.9rem; }
+.file-name { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 30%; }
+.file-status { color: var(--muted); max-width: 65%; text-align: right; }
+.file[data-state="done"] .file-status { color: var(--ok); }
+.file[data-state="error"] .file-status { color: var(--bad); }
+.bar { height: 4px; background: var(--line); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); transition: width 0.2s; }
+.file[data-state="done"] .bar-fill { background: var(--ok); }
+.file[data-state="error"] .bar-fill { background: var(--bad); }
+
+.button {
   display: inline-block;
-  border: 1px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
-.img-1 {
-  width: 150px;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-}
+.button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
 
-.div{
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    border: 0px;
-    width: 25%;
-    float: left;
-    padding: 10px;
-}
+.footnote { text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 16px; }
 
-.img-1bis{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 500;
-    float: left;
-  }
+.status { font-weight: 600; }
+.status.ok { color: var(--ok); }
+.status.warn { color: var(--warn); }
+.status.bad { color: var(--bad); }
+.link { word-break: break-all; background: var(--bg); padding: 10px 12px; border-radius: 10px; font-size: 0.9rem; }
+.token { width: 100%; font-family: ui-monospace, monospace; font-size: 0.8rem; padding: 10px; border-radius: 10px; border: 1px solid var(--line); }
 
-.img-2{
-    margin: 2;
-    padding: 0;
-    width: 33%;
-    height: 200;
-    float: left;
-}
+.qr-card { text-align: center; }
+.qr { display: flex; justify-content: center; margin: 24px 0; }
 
-.section {
-    height: 100vh;
-    background-image: url("http://www.tao-restaurant.fr/wp-content/uploads/2013/03/plage20111102.jpg");
-    background-size: cover;
-}
-@media screen and (max-width: 720px) {
-  .header {
-    width: 600px;
-  }
-
-
+@media print {
+  body, .card { background: #fff; box-shadow: none; border: 0; }
+  .no-print { display: none; }
 }

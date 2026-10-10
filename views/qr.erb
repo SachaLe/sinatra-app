@@ -1,0 +1,13 @@
+<section class="card qr-card">
+  <p class="eyebrow">Partagez vos photos</p>
+  <h1><%= h settings.wedding_title %></h1>
+  <div id="qrcode" class="qr" data-link="<%= h @link %>"></div>
+  <p class="lead">Scannez ce code avec l’appareil photo de votre téléphone pour nous envoyer vos photos et vidéos.</p>
+  <p class="link"><%= h @link %></p>
+  <button class="button no-print" type="button" onclick="window.print()">Imprimer</button>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  var el = document.getElementById('qrcode');
+  new QRCode(el, { text: el.dataset.link, width: 240, height: 240, correctLevel: QRCode.CorrectLevel.M });
+</script>

@@ -1,1 +1,1 @@
-web: bundle exec ruby ./app/controller.rb -p $PORT
+web: bundle exec puma -p ${PORT:-3000} config.ru

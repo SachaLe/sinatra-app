@@ -1,0 +1,7 @@
+<section class="card admin">
+  <h1>Presque fini !</h1>
+  <p>Copiez ce jeton et enregistrez-le dans la variable d’environnement <code>GOOGLE_REFRESH_TOKEN</code> de votre hébergeur, puis redémarrez l’application.</p>
+  <textarea class="token" readonly rows="4" onclick="this.select()"><%= h @refresh_token %></textarea>
+  <p class="footnote">Ne partagez ce jeton avec personne : il donne accès aux fichiers créés par cette application dans votre Drive.</p>
+  <a class="button secondary" href="<%= url('/admin') %>">Retour</a>
+</section>
